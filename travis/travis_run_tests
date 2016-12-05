@@ -56,6 +56,7 @@ if __name__ == '__main__':
     is_oca_project = os.environ.get('TRAVIS_REPO_SLUG', '').startswith('OCA/')
     is_oca_transifex_user = os.environ.get('TRANSIFEX_USER') == \
         'transbot@odoo-community.org'
+    doc_enabled = os.environ.get('AUTODOC') == '1'
 
     # TRAVIS_PULL_REQUEST contains the pull request number or 'false'
     is_pull_request = os.environ.get('TRAVIS_PULL_REQUEST') != 'false'
@@ -78,6 +79,9 @@ if __name__ == '__main__':
 
     if transifex_enabled and is_valid_transifex:
         tests.append(['travis_transifex.py'])
+
+    if doc_enabled:
+        tests.append(['travis_autodoc_build'])
 
     if tests:
         exit(main(tests))

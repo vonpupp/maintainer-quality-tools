@@ -14,6 +14,10 @@ if [ "${LINT_CHECK}" != "0" ]; then
     exit 0
 fi
 
+if [ "${AUTODOC}" != "0" ]; then
+    pip install --upgrade -r travis_autodoc_requirements.txt
+fi
+
 # We can exit here and do nothing if this only a LINT check
 if [ "${TESTS}" != "1" ] && [ "${LINT_CHECK}" == "1" ]; then
     exit 0
