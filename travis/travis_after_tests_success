@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
 import os
+import sys
+import subprocess
 
 from coverage.cmdline import main as coverage_main
 from coveralls import cli as coveralls_cli
 from codecov import main as codecov_main
 
+status = 0
 
 if (os.environ.get('TESTS', '1') == '1' and
         os.environ.get('TEST_ENABLE', '1') == '1' and
@@ -19,3 +22,12 @@ if (os.environ.get('TESTS', '1') == '1' and
         codecov_main(argv=None)
     except:
         pass
+
+if os.environ.get('DOC') == '1':
+    odoo_version = os.environ.get("VERSION")
+    status += subprocess.call(['travis-sphinx',
+                               '--branch=%s' % odoo_version,
+                               'deploy'
+                               ])
+
+sys.exit(0 if status == 0 else 1)
