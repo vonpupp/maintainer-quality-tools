@@ -15,11 +15,7 @@ if [ "${LINT_CHECK}" != "0" ]; then
 fi
 
 if [ "${AUTODOC}" != "0" ]; then
-    pip install --upgrade sphinx sphinx-rtd-theme sphinx_bootstrap_theme odoo-sphinx-autodoc
-    pip install --upgrade docutils
-    pip install --upgrade pillow
-    pip install --upgrade --user travis-sphinx
-    export PATH=$HOME/.local/bin:$PATH
+    pip install --upgrade -r travis_autodoc_requirements.txt
 fi
 
 # We can exit here and do nothing if this only a LINT check

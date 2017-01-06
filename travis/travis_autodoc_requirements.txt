@@ -1,0 +1,4 @@
+pip install --upgrade sphinx sphinx-rtd-theme sphinx_bootstrap_theme odoo-sphinx-autodoc
+pip install --upgrade docutils
+pip install --upgrade pillow
+pip install --upgrade --user travis-sphinx
