@@ -23,7 +23,7 @@ if (os.environ.get('TESTS', '1') == '1' and
     except:
         pass
 
-if os.environ.get('DOC') == '1':
+if os.environ.get('AUTODOC') == '1':
     odoo_version = os.environ.get("VERSION")
     status += subprocess.call(['travis-sphinx',
                                '--branch=%s' % odoo_version,
